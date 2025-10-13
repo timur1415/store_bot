@@ -1,6 +1,7 @@
 import logging
 from telegram import Update, Bot
 from telegram.ext import (
+    Application,
     ApplicationBuilder,
     ContextTypes,
     ConversationHandler,
@@ -16,7 +17,7 @@ from handler.ai import ai
 from handler.magaz import magaz
 from handler.start import start
 
-def create_bot_app():
+def create_bot_app() -> Application:
     persistence = PicklePersistence(filepath="store_bot")
     telegram_app = ApplicationBuilder().token(TOKEN).persistence(persistence).build()
 

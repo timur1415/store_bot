@@ -35,7 +35,7 @@ async def lifespan(app: FastAPI):
     yield #
     # что будет происходить при выходе 
     try:
-        await bot_app.delete_webhook()
+        await bot_app.bot.delete_webhook()
     finally:
         await bot_app.stop()
         await bot_app.shutdown()

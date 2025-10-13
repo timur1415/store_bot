@@ -11,5 +11,3 @@ async def telegram_webhook(request: Request):
     update = Update.de_json(data, bot_app.bot)
     await bot_app.update_queue.put(update)
     return Response(status_code=status.HTTP_200_OK)
-
-#треш контент
