@@ -32,6 +32,9 @@ def create_bot_app() -> Application:
             ],
             MAGAZ: [CallbackQueryHandler(magaz)],
         },
+        name='store_bot',
+        persistent=True,
+        fallbacks=[CommandHandler('start', start)]
     )
 
     telegram_app.add_handler(conv_handler)

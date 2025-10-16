@@ -10,7 +10,7 @@ from config.logger import logger
 
 from server.routes import telegram_router
 
-def init_fastspi_app():
+def init_fastapi_app():
     app = FastAPI(lifespan=lifespan)
     app.include_router(telegram_router)
     return app
