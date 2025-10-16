@@ -1,1 +1,1 @@
-from .telegram_routes import router as telegram_router
+from .telegram_routers import router as telegram_router
