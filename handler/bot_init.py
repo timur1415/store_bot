@@ -26,10 +26,11 @@ def create_bot_app() -> Application:
         entry_points=[CommandHandler("start", start)],
         states={
             MAIN_MENU: [
-                CallbackQueryHandler(magaz, "magaz"),
-                CallbackQueryHandler(ai_start, "ai"),
+                CallbackQueryHandler(magaz, pattern="^magaz$"),
+                CallbackQueryHandler(ai_start, pattern="^ai$"),
             ],  # noqa: F821
-            AI: [MessageHandler(filters.TEXT & ~filters.COMMAND, ai)],
+            AI: [MessageHandler(filters.TEXT & ~filters.COMMAND, ai),
+                 CallbackQueryHandler(start, 'back')],
             MAGAZ: [CallbackQueryHandler(magaz)],
         },
         name="store_bot",
