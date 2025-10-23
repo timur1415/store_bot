@@ -29,7 +29,7 @@ async def ai_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def ai(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["questions"] = update.effective_message.text
     client = AsyncOpenAI(api_key=GPT_TOKEN)
-    keyboard = InlineKeyboardButton("назад", callback_data="back")
+    keyboard = [[InlineKeyboardButton("назад", callback_data="back")]]
     markup = InlineKeyboardMarkup(keyboard)
 
     response = await client.responses.create(

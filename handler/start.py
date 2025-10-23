@@ -1,5 +1,5 @@
 import logging
-from telegram import Update, Bot, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, Bot, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import (
     ApplicationBuilder,
     ContextTypes,
@@ -11,10 +11,13 @@ from telegram.ext import (
     filters,
 )
 
+from config.states import MAIN_MENU
+
+from config.config import WEBHOOK_URL
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
-        [InlineKeyboardButton("магазин", callback_data="magaz")],
+        [InlineKeyboardButton("магазин", web_app=WebAppInfo(f'{WEBHOOK_URL}/app'))],
         [InlineKeyboardButton("ии помошник", callback_data="ai")],
     ]
     markup = InlineKeyboardMarkup(keyboard)
@@ -22,3 +25,4 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         chat_id=update.effective_chat.id,
         text="привет",reply_markup=markup
     )
+    return MAIN_MENU

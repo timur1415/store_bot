@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ПоймайКа Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap');
+
+    :root {
+      --purple: #7A3FFD;
+      --green: #8AFF4D;
+      --dark: #0f0f0f;
+      --light: #ffffff;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1c012d, #090909);
+      color: var(--light);
+      font-family: 'Rubik', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Анимированные фоновые элементы */
+    .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+
+    .bg-purple {
+      background: var(--purple);
+      width: 280px;
+      height: 280px;
+      top: -60px;
+      left: -80px;
+    }
+
+    .bg-green {
+      background: var(--green);
+      width: 220px;
+      height: 220px;
+      bottom: -60px;
+      right: -70px;
+    }
+
+    .bg-blue {
+      background: #4b68ff;
+      width: 180px;
+      height: 180px;
+      top: 60%;
+      left: 20%;
+      opacity: 0.25;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-20px) translateX(15px); }
+    }
+
+    /* Частицы */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      background: radial-gradient(circle, var(--green), transparent);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: move 12s linear infinite;
+    }
+
+    @keyframes move {
+      from { transform: translateY(100vh) scale(0.5); opacity: 0.3; }
+      to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Навигация */
+    .navbar {
+      background-color: rgba(15,15,15,0.8);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 2;
+    }
+
+    .navbar-brand {
+      color: var(--green) !important;
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Карточки */
+    .card {
+      background-color: rgba(255,255,255,0.05);
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      height: 320px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.4);
+    }
+
+    .card img {
+      border-radius: 12px;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 10px 14px;
+    }
+
+    .card-title {
+      color: var(--green);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .card-text {
+      color: #bbb;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    /* Кнопка */
+    .btn-buy {
+      background: linear-gradient(90deg, var(--purple), #905cff);
+      color: var(--light);
+      border: none;
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: 0.25s ease;
+    }
+
+    .btn-buy:hover {
+      background: linear-gradient(90deg, #905cff, var(--purple));
+      transform: scale(1.05);
+    }
+
+    /* Заголовки и анимация */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Футер */
+    footer {
+      text-align: center;
+      padding: 25px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer a {
+      text-decoration: none;
+      background-color: var(--green);
+      color: var(--dark);
+      padding: 12px 22px;
+      border-radius: 16px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    footer a:hover {
+      background-color: #aaff66;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Фоновые элементы -->
+  <div class="bg-shape bg-purple"></div>
+  <div class="bg-shape bg-green"></div>
+  <div class="bg-shape bg-blue"></div>
+
+  <!-- Частицы -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Навигация -->
+  <nav class="navbar navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="logo.png" alt="Логотип" height="40" class="me-2">
+        ПоймайКа Store
+      </a>
+    </div>
+  </nav>
+
+  <!-- Каталог -->
+  <main class="container my-5 position-relative" style="z-index: 2;">
+    <div class="text-center mb-4 fade-in" style="animation-delay: 0.1s;">
+      <h2 class="fw-bold" style="color: var(--green);">Каталог товаров</h2>
+      <p class="text-secondary">Выбери своего нового друга 🧸</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-4 col-lg-3 fade-in" style="animation-delay: 0.2s;">
+        <div class="card text-center">
+          <img src="https://via.placeholder.com/250x160/7A3FFD/FFFFFF?text=Мишка+1" class="card-img-top" alt="Мишка 1">
+          <div class="card-body">
+            <h5 class="card-title">Плюшевый мишка</h5>
+            <p class="card-text">990 ₽</p>
+            <button class="btn btn-buy w-100">Купить</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 fade-in" style="animation-delay: 0.3s;">
+        <div class="card text-center">
+          <img src="https://via.placeholder.com/250x160/8AFF4D/000000?text=Игрушка+2" class="card-img-top" alt="Игрушка 2">
+          <div class="card-body">
+            <h5 class="card-title">Игрушка-зайчик</h5>
+            <p class="card-text">850 ₽</p>
+            <button class="btn btn-buy w-100">Купить</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 fade-in" style="animation-delay: 0.4s;">
+        <div class="card text-center">
+          <img src="https://via.placeholder.com/250x160/7A3FFD/FFFFFF?text=Мишка+3" class="card-img-top" alt="Мишка 3">
+          <div class="card-body">
+            <h5 class="card-title">Медвежонок в костюме</h5>
+            <p class="card-text">1 200 ₽</p>
+            <button class="btn btn-buy w-100">Купить</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 fade-in" style="animation-delay: 0.5s;">
+        <div c
+
