@@ -23,6 +23,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("ии помошник", callback_data="ai")],
         [InlineKeyboardButton("поддержка", url="https://t.me/i1i1i1iij")],
         [InlineKeyboardButton("история бренда", callback_data="history")],
+        [InlineKeyboardButton("отзывы", callback_data='start_reviews')]
     ]
     markup = InlineKeyboardMarkup(keyboard)
     if query:

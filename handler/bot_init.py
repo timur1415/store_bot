@@ -12,10 +12,11 @@ from telegram.ext import (
     filters,
 )
 from config.config import TOKEN
-from config.states import MAIN_MENU, AI, HISTORY
+from config.states import MAIN_MENU, AI, HISTORY, REVIEWS_HANDLER, REVIEWS
 from handler.ai import ai_start, ai
 from handler.start import start
 from handler.history import history
+from handler.reviews_handler import get_reviews, reviews_handler, text_reviews
 
 
 def create_bot_app() -> Application:
@@ -27,12 +28,25 @@ def create_bot_app() -> Application:
         states={
             MAIN_MENU: [
                 CallbackQueryHandler(ai_start, pattern="^ai$"),
-                CallbackQueryHandler(history, pattern='^history$')
-            ],  # noqa: F821
-            AI: [MessageHandler(filters.TEXT & ~filters.COMMAND, ai),
-                 CallbackQueryHandler(start, 'back')],
-            HISTORY:[MessageHandler(filters.TEXT & ~filters.COMMAND, history),
-                 CallbackQueryHandler(start, 'exit')]
+                CallbackQueryHandler(history, pattern="^history$"),
+                CallbackQueryHandler(reviews_handler, pattern="^start_reviews$")
+            ],
+            AI: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, ai),
+                CallbackQueryHandler(start, "back"),
+            ],
+            HISTORY: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, history),
+                CallbackQueryHandler(start, "exit"),
+            ],
+            REVIEWS: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, get_reviews),
+                CallbackQueryHandler(start, "main_menu"),
+            ],
+            REVIEWS_HANDLER: [
+                MessageHandler(filters.TEXT & ~filters.COMMAND, reviews_handler),
+                CallbackQueryHandler(text_reviews, pattern="^reviews$"),
+            ],
         },
         name="store_bot",
         persistent=True,

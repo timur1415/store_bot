@@ -1,5 +1,7 @@
 (
     HISTORY,
     MAIN_MENU,
-    AI
-) = range(3)
+    AI,
+    REVIEWS,
+    REVIEWS_HANDLER
+) = range(5)
