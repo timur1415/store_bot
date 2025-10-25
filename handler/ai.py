@@ -19,9 +19,10 @@ from openai import AsyncOpenAI
 
 
 async def ai_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(
-        chat_id=update.effective_chat.id,
-        text=" Привет! Это наш ии ассистент. задай любой вопрос и он ответит на него!",
+    query = update.callback_query
+    await query.answer()
+    await context.bot.send_photo(
+        chat_id=update.effective_chat.id, photo=open("photo/ai.jpg", "rb")
     )
     return AI
 
