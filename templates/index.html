@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ПоймайКа Store</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://telegram.org/js/telegram-web-app.js?59"></script>"
+  <script src="https://telegram.org/js/telegram-web-app.js?59"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const tg = window.Telegram.WebApp
     tg.ready()
     tg.expand()
   </script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap');
 
@@ -31,7 +32,6 @@
       min-height: 100vh;
     }
 
-    /* Анимированные фоновые элементы */
     .bg-shape {
       position: absolute;
       border-radius: 50%;
@@ -70,7 +70,6 @@
       100% { transform: translateY(-20px) translateX(15px); }
     }
 
-    /* Частицы */
     .particles {
       position: fixed;
       inset: 0;
@@ -94,7 +93,6 @@
       to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
-    /* Навигация */
     .navbar {
       background-color: rgba(15,15,15,0.8);
       backdrop-filter: blur(6px);
@@ -109,7 +107,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Карточки */
     .card {
       background-color: rgba(255,255,255,0.05);
       border: none;
@@ -148,7 +145,6 @@
       margin-bottom: 10px;
     }
 
-    /* Кнопка */
     .btn-buy {
       background: linear-gradient(90deg, var(--purple), #905cff);
       color: var(--light);
@@ -165,7 +161,6 @@
       transform: scale(1.05);
     }
 
-    /* Заголовки и анимация */
     .fade-in {
       opacity: 0;
       transform: translateY(50px);
@@ -179,7 +174,6 @@
       }
     }
 
-    /* Футер */
     footer {
       text-align: center;
       padding: 25px 0;
@@ -206,15 +200,13 @@
 </head>
 
 <body>
-  <!-- Фоновые элементы -->
+
   <div class="bg-shape bg-purple"></div>
   <div class="bg-shape bg-green"></div>
   <div class="bg-shape bg-blue"></div>
 
-  <!-- Частицы -->
   <div class="particles" id="particles"></div>
 
-  <!-- Навигация -->
   <nav class="navbar navbar-dark sticky-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#">
@@ -224,17 +216,17 @@
     </div>
   </nav>
 
-  <!-- Каталог -->
   <main class="container my-5 position-relative" style="z-index: 2;">
     <div class="text-center mb-4 fade-in" style="animation-delay: 0.1s;">
       <h2 class="fw-bold" style="color: var(--green);">Каталог товаров</h2>
-      <p class="text-secondary">Выбери своего нового друга 🧸</p>
+      <p class="text-secondary">Выбери своего нового朋友 🧸</p>
     </div>
 
     <div class="row g-4 justify-content-center">
+
       <div class="col-6 col-md-4 col-lg-3 fade-in" style="animation-delay: 0.2s;">
         <div class="card text-center">
-          <img src="https://via.placeholder.com/250x160/7A3FFD/FFFFFF?text=Мишка+1" class="card-img-top" alt="Мишка 1">
+          <img src="https://via.placeholder.com/250x160/7A3FFD/FFFFFF?text=Мишка+1" alt="">
           <div class="card-body">
             <h5 class="card-title">Плюшевый мишка</h5>
             <p class="card-text">990 ₽</p>
@@ -245,7 +237,7 @@
 
       <div class="col-6 col-md-4 col-lg-3 fade-in" style="animation-delay: 0.3s;">
         <div class="card text-center">
-          <img src="https://via.placeholder.com/250x160/8AFF4D/000000?text=Игрушка+2" class="card-img-top" alt="Игрушка 2">
+          <img src="https://via.placeholder.com/250x160/8AFF4D/000000?text=Игрушка+2" alt="">
           <div class="card-body">
             <h5 class="card-title">Игрушка-зайчик</h5>
             <p class="card-text">850 ₽</p>
@@ -256,7 +248,7 @@
 
       <div class="col-6 col-md-4 col-lg-3 fade-in" style="animation-delay: 0.4s;">
         <div class="card text-center">
-          <img src="https://via.placeholder.com/250x160/7A3FFD/FFFFFF?text=Мишка+3" class="card-img-top" alt="Мишка 3">
+          <img src="https://via.placeholder.com/250x160/7A3FFD/FFFFFF?text=Мишка+3" alt="">
           <div class="card-body">
             <h5 class="card-title">Медвежонок в костюме</h5>
             <p class="card-text">1 200 ₽</p>
@@ -265,6 +257,35 @@
         </div>
       </div>
 
+      <!-- Доделанный 4-й товар -->
       <div class="col-6 col-md-4 col-lg-3 fade-in" style="animation-delay: 0.5s;">
-        <div c
+        <div class="card text-center">
+          <img src="https://via.placeholder.com/250x160/4b68ff/FFFFFF?text=Игрушка+4" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Мягкий котёнок</h5>
+            <p class="card-text">1 050 ₽</p>
+            <button class="btn btn-buy w-100">Купить</button>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </main>
+
+  <footer>
+    <a href="#">Связаться с поддержкой</a>
+  </footer>
+
+  <script>
+    const particles = document.getElementById("particles");
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement("div");
+      p.classList.add("particle");
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDelay = Math.random() * 10 + "s";
+      particles.appendChild(p);
+    }
+  </script>
+
+</body>
+</html>

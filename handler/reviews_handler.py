@@ -13,6 +13,7 @@ from telegram.ext import (
 
 from config.states import REVIEWS, REVIEWS_HANDLER
 
+
 async def reviews_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
         [InlineKeyboardButton("Посмотреть отзывы", url="https://t.me/rewiews_store")],
@@ -28,22 +29,32 @@ async def reviews_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     return REVIEWS_HANDLER
 
-async def text_reviews(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+async def name_reviews(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     query.answer()
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="ждём твой от тебя отзыв что бы все могли увидеть наши заслуги",
+        text="Напишите своё имя чтобы люди знали кто пишет отзыв",
+    )
+
+    
+
+
+async def get_name_reviews(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data["name"] = update.effective_message.text
+    await context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="теперь отзыв",
     )
 
     return REVIEWS
 
+
 async def get_reviews(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    context.user_data['reviews'] = update.effective_message.text
-    keyboard = [[InlineKeyboardButton('в главное меню', callback_data='main_menu')]]
+    context.user_data["reviews"] = update.effective_message.text
+    keyboard = [[InlineKeyboardButton("в главное меню", callback_data="main_menu")]]
     markup = InlineKeyboardMarkup(keyboard)
     await context.bot.send_message(
-        chat_id=update.effective_chat.id,
-        text="спасибо за отзыв",
-        reply_markup=markup
+        chat_id=update.effective_chat.id, text="благодарим за отзыв", markup=markup
     )
