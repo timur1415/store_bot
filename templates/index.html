@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Оплата</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
   <style>
     body {
       background:#111;
@@ -37,10 +38,30 @@
   <button id="pay">Оплатить</button>
 
   <script>
+    async function run_pay() {
+      const widget = new cp.CloudPayments();
+      widget.charge({
+            email: emailInput.value,
+            publicId: orderData.publicId,
+            description: "Оплата подписки",
+            amount: 500,
+            currency: "RUB",
+            accountId: emailInput.value,
+            invoiceId: orderData.invoiceId,
+            data: {
+              CloudPayments: {
+                recurrent: { interval: "Month", period: 1},
+              },
+            },
+          });
+        }
+  
     const tg = window.Telegram.WebApp;
-    tg.ready();
+    tg.ready()
+    tg.expand()
 
-    document.getElementById("pay").onclick = () => {
+
+    paybutton = ocument.getElementById("pay").onclick = () => {
       tg.showAlert("Здесь будет действие оплаты");
     };
   </script>
